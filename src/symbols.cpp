@@ -1,5 +1,5 @@
 // This file was automatically generated using tools/process_headers.py
-// Generated on Mon Sep 30 2019 19:44:18 UTC
+// Generated on Tue Oct 01 2019 18:21:26 UTC
 
 #include <hybris/dlfcn.h>
 #include <log.h>
@@ -35,10 +35,10 @@ void App::setRenderingSize(int p1, int p2) {
 }
 static int vti_App_setUISizeAndScale = -1;
 void App::setUISizeAndScale(int p1, int p2, float p3) {
-    union { void* voidp; void (App::*funcp)(int, int, float); } u;
+    union { void* voidp; void (App::*funcp)(int, int, int); } u;
     u.funcp = nullptr;
     u.voidp = vtable[vti_App_setUISizeAndScale];
-    (this->*u.funcp)(p1, p2, p3);
+    (this->*u.funcp)(p1, p2, (int&) p3);
 }
 static int vti_App_wantToQuit = -1;
 bool App::wantToQuit() {
@@ -211,13 +211,13 @@ static void (GameControllerManager::*_GameControllerManager_feedButton)(int, int
 void GameControllerManager::feedButton(int p1, int p2, GameControllerButtonState p3, bool p4) {
     (this->*_GameControllerManager_feedButton)(p1, p2, p3, p4);
 }
-static void (GameControllerManager::*_GameControllerManager_feedStick)(int, int, GameControllerStickState, float, float);
+static void (GameControllerManager::*_GameControllerManager_feedStick)(int, int, GameControllerStickState, int, int);
 void GameControllerManager::feedStick(int p1, int p2, GameControllerStickState p3, float p4, float p5) {
-    (this->*_GameControllerManager_feedStick)(p1, p2, p3, p4, p5);
+    (this->*_GameControllerManager_feedStick)(p1, p2, p3, (int&) p4, (int&) p5);
 }
-static void (GameControllerManager::*_GameControllerManager_feedTrigger)(int, int, float);
+static void (GameControllerManager::*_GameControllerManager_feedTrigger)(int, int, int);
 void GameControllerManager::feedTrigger(int p1, int p2, float p3) {
-    (this->*_GameControllerManager_feedTrigger)(p1, p2, p3);
+    (this->*_GameControllerManager_feedTrigger)(p1, p2, (int&) p3);
 }
 static void (GameControllerManager::*_GameControllerManager_feedJoinGame)(int, bool);
 void GameControllerManager::feedJoinGame(int p1, bool p2) {
@@ -757,10 +757,10 @@ void Legacy::Pre_1_8::App::quit() {
 }
 static int vti_Legacy_Pre_0_15_App_setSize = -1;
 void Legacy::Pre_0_15::App::setSize(int p1, int p2, float p3) {
-    union { void* voidp; void (Legacy::Pre_0_15::App::*funcp)(int, int, float); } u;
+    union { void* voidp; void (Legacy::Pre_0_15::App::*funcp)(int, int, int); } u;
     u.funcp = nullptr;
     u.voidp = vtable[vti_Legacy_Pre_0_15_App_setSize];
-    (this->*u.funcp)(p1, p2, p3);
+    (this->*u.funcp)(p1, p2, (int&) p3);
 }
 
 #include <minecraft/legacy/AppPlatform.h>
