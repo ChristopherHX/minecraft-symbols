@@ -8,6 +8,7 @@
 extern "C" {
 #include <hybris/jb/linker.h>
 }
+#include <log.h>
 
 static VersionData *current_version_data;
 VersionData *find_version_data(VersionData *versions, int nversions, void *handle) {
@@ -66,5 +67,5 @@ void minecraft_get_version(int *major, int *minor, int *patch, int *revision) {
             *revision = 0;
         return;
     }
-    throw std::runtime_error("Found no way to resolve library version, Minecraft version likely unsupported");
+    Log::trace("Error", "Found no way to resolve library version, Minecraft version likely unsupported");
 }
