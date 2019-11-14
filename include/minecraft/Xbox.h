@@ -3,7 +3,7 @@
 #include <memory>
 #include <vector>
 #include "std/string.h"
-
+#include <pplx/pplxtasks.140.h>
 namespace web {
 namespace json {
 
@@ -177,20 +177,20 @@ struct task_xbox_live_result_token_and_signature_result {
     xbox::services::xbox_live_result<xbox::services::system::token_and_signature_result> get();
 };
 
-struct cancellation_token {
-    static cancellation_token none() {
-        return cancellation_token();
-    }
+// struct cancellation_token {
+//     static cancellation_token none() {
+//         return cancellation_token();
+//     }
 
-    void* impl = nullptr;
+//     void* impl = nullptr;
 
-    cancellation_token() {}
-    cancellation_token(cancellation_token const& t) {
-        if (t.impl != nullptr)
-            throw std::runtime_error("Only null cancellation_token are supported");
-        impl = t.impl;
-    }
-};
+//     cancellation_token() {}
+//     cancellation_token(cancellation_token const& t) {
+//         if (t.impl != nullptr)
+//             throw std::runtime_error("Only null cancellation_token are supported");
+//         impl = t.impl;
+//     }
+// };
 
 
 }
@@ -223,8 +223,7 @@ struct auth_manager {
     pplx::task_xbox_live_result_void initialize_default_nsal(pplx::cancellation_token t = pplx::cancellation_token::none());
     /// @symbol _ZN4xbox8services6system12auth_manager21initialize_title_nsalERKSsN4pplx18cancellation_tokenE
     pplx::task_xbox_live_result_void initialize_title_nsal(mcpe::string const&, pplx::cancellation_token t = pplx::cancellation_token::none());
-    /// @symbol _ZN4xbox8services6system12auth_manager32internal_get_token_and_signatureESsRKSsS4_SsRKSt6vectorIhSaIhEEbbS4_N4pplx18cancellation_tokenE
-    pplx::task_xbox_live_result_token_and_signature_result internal_get_token_and_signature(mcpe::string, mcpe::string const&, mcpe::string const&, mcpe::string, std::vector<unsigned char> const&, bool, bool, mcpe::string const&, pplx::cancellation_token t = pplx::cancellation_token::none());
+    pplx::task<xbox::services::xbox_live_result<token_and_signature_result>> internal_get_token_and_signature(mcpe::string, mcpe::string const&, mcpe::string const&, mcpe::string, std::vector<unsigned char> const&, bool, bool, mcpe::string const&, pplx::cancellation_token t = pplx::cancellation_token::none());
     std::shared_ptr<xbox::services::system::auth_config> get_auth_config();
 
 };
