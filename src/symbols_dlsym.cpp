@@ -67,5 +67,4 @@ void minecraft_get_version(int *major, int *minor, int *patch, int *revision) {
             *revision = 0;
         return;
     }
-    Log::trace("Error", "Found no way to resolve library version, Minecraft version likely unsupported");
 }

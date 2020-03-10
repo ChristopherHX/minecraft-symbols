@@ -307,12 +307,12 @@ def generate_init_func():
                 output("    void** " + vt_var_name + " = (void**) minecraft_dlsym(handle, \"_ZTV" + vt_sym_name + "\") + 2;")
                 vtables[symbol["vtable_name"]] = True
             output("    if (vti" + symbol["name"] + " == -1) vti" + symbol["name"] + " = resolve_vtable_func(" + vt_var_name + ", minecraft_dlsym(handle, \"" + symbol["symbol"] + "\"));")
-            if not symbol["is_legacy"]:
-                output("    if (vti" + symbol["name"] + " == -1) Log::error(\"MinecraftSymbols\", \"Unresolved vtable symbol: %s\", \"" + symbol["symbol"] + "\");")
+ #           if not symbol["is_legacy"]:
+ #               output("    if (vti" + symbol["name"] + " == -1) Log::error(\"MinecraftSymbols\", \"Unresolved vtable symbol: %s\", \"" + symbol["symbol"] + "\");")
             continue
         output("    ((void*&) " + symbol["name"] + ") = minecraft_dlsym(handle, \"" + symbol["symbol"] + "\");")
-        if not symbol["is_legacy"]:
-            output("    if (" + symbol["name"] + " == nullptr) Log::error(\"MinecraftSymbols\", \"Unresolved symbol: %s\", \"" + symbol["symbol"] + "\");")
+#        if not symbol["is_legacy"]:
+#            output("    if (" + symbol["name"] + " == nullptr) Log::error(\"MinecraftSymbols\", \"Unresolved symbol: %s\", \"" + symbol["symbol"] + "\");")
     output("}")
 
 out_file = open("../src/symbols.cpp", "w")
