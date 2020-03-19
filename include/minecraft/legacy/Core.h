@@ -30,10 +30,10 @@ struct Path {
         size = s.length();
     }
 
-    Path(const mcpe::string & s) {
-        path = s.c_str();
-        size = s.length();
-    }
+    // Path(const mcpe::string & s) {
+    //     path = s.c_str();
+    //     size = s.length();
+    // }
 
     const char *path;
     size_t size;
