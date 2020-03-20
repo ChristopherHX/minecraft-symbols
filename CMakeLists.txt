@@ -12,4 +12,4 @@ endif()
 
 add_library(minecraft-symbols ${MINECRAFT_SYMBOLS_SOURCES})
 target_include_directories(minecraft-symbols PUBLIC include/)
-target_link_libraries(minecraft-symbols logger hybris)
+target_link_libraries(minecraft-symbols logger)
