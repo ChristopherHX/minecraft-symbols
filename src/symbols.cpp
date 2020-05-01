@@ -977,7 +977,6 @@ static int resolve_vtable_func(void** vtable, void* what) {
     }
 }
 void minecraft_symbols_init(void* handle) {
-    set_current_version_data(find_version_data(version_data, sizeof(version_data) / sizeof(VersionData), handle));
     ((void*&) _App_init) = minecraft_dlsym(handle, "_ZN3App4initER10AppContext");
     if (_App_init == nullptr) Log::error("MinecraftSymbols", "Unresolved symbol: %s", "_ZN3App4initER10AppContext");
     void** vt_App = (void**) minecraft_dlsym(handle, "_ZTV3App") + 2;
