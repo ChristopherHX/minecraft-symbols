@@ -1,5 +1,6 @@
 #pragma once
 
+#include <stdexcept>
 #include <functional>
 #include <type_traits>
 
