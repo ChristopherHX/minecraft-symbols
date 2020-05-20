@@ -1,5 +1,6 @@
 #define _GLIBCXX_USE_CXX11_ABI 0
 #include "string.h"
+#include <ostream>
 
 mcpe::string* mcpe::string::empty;
 
