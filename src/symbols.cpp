@@ -1,7 +1,7 @@
 // This file was automatically generated using tools/process_headers.py
 // Generated on Tue Mar 10 2020 15:33:08 UTC
 
-#include <hybris/dlfcn.h>
+#include <mcpelauncher/linker.h>
 #include <log.h>
 #include "symbols_internal.h"
 

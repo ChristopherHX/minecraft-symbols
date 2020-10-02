@@ -1,25 +1,22 @@
 #include "symbols_internal.h"
 
 #include <cstring>
-#include <hybris/dlfcn.h>
+#include <mcpelauncher/linker.h>
 #include <stdexcept>
 #include <minecraft/legacy/SharedConstants.h>
 #include <minecraft/SharedConstants.h>
-extern "C" {
-#include <hybris/jb/linker.h>
-}
 #include <log.h>
 
 static VersionData *current_version_data;
 VersionData *find_version_data(VersionData *versions, int nversions, void *handle) {
-    soinfo *si = (soinfo *) handle;
-    for (int i = 0; i < nversions; i++) {
-        if (versions[i].version_code_addr > si->size)
-            continue;
-        if (*(unsigned int *) (si->base + versions[i].version_code_addr) == versions[i].version_code) {
-            return &versions[i];
-        }
-    }
+    // soinfo *si = (soinfo *) handle;
+    // for (int i = 0; i < nversions; i++) {
+    //     if (versions[i].version_code_addr > si->size)
+    //         continue;
+    //     if (*(unsigned int *) (si->base + versions[i].version_code_addr) == versions[i].version_code) {
+    //         return &versions[i];
+    //     }
+    // }
     return nullptr;
 }
 void set_current_version_data(VersionData *vd) {
@@ -38,14 +35,14 @@ static unsigned int minecraft_dlsym_hash(const char *sym) {
     return ret;
 }
 void *minecraft_dlsym(void *handle, const char *sym) {
-    if (current_version_data != nullptr) {
-        auto hash = minecraft_dlsym_hash(sym);
-        auto b = current_version_data->symbol_buckets[hash % current_version_data->symbol_bucket_count];
-        for ( ; b->name; b++)
-            if (!strcmp(b->name, sym))
-                return (void *) (((soinfo *) handle)->base + b->val);
-    }
-    return hybris_dlsym(handle, sym);
+    // if (current_version_data != nullptr) {
+    //     auto hash = minecraft_dlsym_hash(sym);
+    //     auto b = current_version_data->symbol_buckets[hash % current_version_data->symbol_bucket_count];
+    //     for ( ; b->name; b++)
+    //         if (!strcmp(b->name, sym))
+    //             return (void *) (((soinfo *) handle)->base + b->val);
+    // }
+    return linker::dlsym(handle, sym);
 }
 void minecraft_get_version(int *major, int *minor, int *patch, int *revision) {
     if (current_version_data != nullptr) {
